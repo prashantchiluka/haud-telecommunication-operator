@@ -2,7 +2,7 @@
 **Setup**
 
  - Import project as maven project using any ide
- - Project can be run by Running main class HaudApplication.java
+ - Project can be run by Running main class TelecomApplication.java
  - Project will start on port 9090
 
 **Steps to run**
