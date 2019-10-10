@@ -19,10 +19,12 @@ import com.haud.utils.Request;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/simcard")
 @Api(tags = "Sim card management api", description = "API's of Sim card management")
+@Slf4j
 public class SimCardApi {
 	
 	@Autowired
@@ -32,10 +34,13 @@ public class SimCardApi {
     @ApiOperation(value = "Create sim card", response = SimResponseDto.class, code = 201)
 	public ResponseEntity<SimResponseDto> createSimCard(@RequestHeader(Headers.AUTH_USER_NAME) String userName,@RequestBody SimRequestDto request) {
 
+		log.info("Creating sim card " + request);
+		
 		Request.verifySimCardPost(request);
 		SimCard simCard = SimMapper.toSimCard(request);
 		simCardService.createSimCard(simCard,userName);
 		
+		log.info("sim card created with id "+ simCard.getId());
         return new ResponseEntity<>(SimMapper.toSimCardResponse(simCard), HttpStatus.CREATED);
 	}
 }
