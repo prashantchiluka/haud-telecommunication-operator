@@ -28,9 +28,6 @@ public class SimCard {
     private long id;
     private long imsi;
     private long msisdn;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
     
     @Column(name = "created_by", updatable = false, nullable = false, columnDefinition = "nvarchar(255)")
     private String createdBy;

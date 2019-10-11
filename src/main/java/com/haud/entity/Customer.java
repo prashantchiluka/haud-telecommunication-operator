@@ -7,9 +7,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -40,7 +42,8 @@ public class Customer {
     
     private String email;
     
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name="customer_id",referencedColumnName="id")
     private List<SimCard> simCards =  new ArrayList<>();
     
     @Column(name = "created_by", updatable = false, nullable = false, columnDefinition = "nvarchar(255)")

@@ -28,4 +28,3 @@
 - Code quality
 - Naming convention
 - Test coverage
- 

@@ -45,12 +45,10 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer customer = customerRepository.findById(customerId).get();
 		List<SimCard> simCards = simCardRepository.findAllById(simId);
 		
-		simCards.forEach(simCard-> {
-			simCard.setCustomer(customer);
-			simCard.setUpdatedBy(userName);
-		});
+		customer.setSimCards(simCards);
 		customer.setUpdatedBy(userName);
 		
+		customerRepository.save(customer);
 		log.info("in service impl, linked simcard to customer");
 	}
 
