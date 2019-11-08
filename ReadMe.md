@@ -23,7 +23,7 @@
  
  - sim card url: localhost:7080/haud/telecom/simcard/create
  
- - Link simcard to specific customer(method:put): localhost:7080/haud/telecom/customer/1
+ - Link simcard to specific customer(method:put): localhost:7080/haud/telecom/customer/save/1
  
 **Database**
 
