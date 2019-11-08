@@ -1,0 +1,57 @@
+{
+	"saveCustomerValidJson": {
+		"name": "Matthew",
+		"email": "Matthew123@gmail.com"
+	},
+	"saveCustomerWithNullName": {
+		"name": null,
+		"email": "Matthew123@gmail.com"
+	},
+	"saveCustomerWithEmptyName": {
+		"name": "",
+		"email": "Matthew123@gmail.com"
+	},
+	"saveCustomerWithNullEmail": {
+		"name": "Matthew",
+		"email": null
+	},
+	"saveCustomerWithEmptyEmail": {
+		"name": "Matthew",
+		"email": ""
+	},
+	"saveCustomerWithInvalidEmail": {
+		"name": "Matthew",
+		"email": "abcgmail"
+	},
+	"linkSimCardToCustomerValidJson": {
+		"simcardId": [
+			1,
+			2,
+			3
+		]
+	},
+	"linkSimCardToCustomerEmptyList":{
+	"simcardId": []
+	},
+	"linkSimCardToCustomerNullElementInList": {
+		"simcardId": [
+			1,
+			null,
+			3
+		]
+	},
+	"linkSimCardToCustomerNegativeIdtInList": {
+		"simcardId": [
+			1,
+			-2,
+			3
+		]
+	},
+	"linkSimCardToCustomerZeroIdInList": {
+		"simcardId": [
+			1,
+			0,
+			3
+		]
+	}
+}

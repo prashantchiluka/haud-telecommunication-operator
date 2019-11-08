@@ -1,0 +1,14 @@
+{
+	"createSimcardValidJson": {
+		"imsi": 14,
+		"msisdn": 1243
+	},
+	"createSimcardWithNonPositiveImsi": {
+		"imsi": 0,
+		"msisdn": 123
+	},
+	"createSimcardWithNonPositiveMsisdn": {
+		"imsi": 23,
+		"msisdn": -1
+	}
+}
