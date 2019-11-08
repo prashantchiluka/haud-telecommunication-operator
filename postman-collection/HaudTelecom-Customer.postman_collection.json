@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "dd02a1f6-1c24-4623-830f-4bef81d78d17",
+		"name": "HaudTelecom-Customer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "test123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\" : \"abc@g.c\",\n\t\"name\" : \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7080/haud/telecom/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"haud",
+						"telecom",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific customer's sim card",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7080/haud/telecom/customer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"haud",
+						"telecom",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Link simcard to specific customer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "test",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"simcardId\" : [1,2]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7080/haud/telecom/customer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"haud",
+						"telecom",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

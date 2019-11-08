@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "6e40f0b7-93bb-4b95-8516-d5f3acdacce7",
+		"name": "HaudTelecom-SimCard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create sim card",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "test",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"imsi\" :12354,\n\t\"msisdn\" : 3245\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7080/haud/telecom/simcard",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"haud",
+						"telecom",
+						"simcard"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
