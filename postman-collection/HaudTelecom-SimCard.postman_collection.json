@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"imsi\" :12354,\n\t\"msisdn\" : 3245\n}",
+					"raw": "{\n\t\"imsi\" :144,\n\t\"msisdn\" : 321245\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -32,7 +32,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:7080/haud/telecom/simcard",
+					"raw": "localhost:7080/haud/telecom/simcard/create",
 					"host": [
 						"localhost"
 					],
@@ -40,7 +40,8 @@
 					"path": [
 						"haud",
 						"telecom",
-						"simcard"
+						"simcard",
+						"create"
 					]
 				}
 			},

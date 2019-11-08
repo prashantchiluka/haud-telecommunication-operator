@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\" : \"abc@g.c\",\n\t\"name\" : \"test\"\n}",
+					"raw": "{\n\t\"email\" : \"abc@gmail.com\",\n\t\"name\" : \"test\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -32,7 +32,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:7080/haud/telecom/customer",
+					"raw": "localhost:7080/haud/telecom/customer/save",
 					"host": [
 						"localhost"
 					],
@@ -40,7 +40,8 @@
 					"path": [
 						"haud",
 						"telecom",
-						"customer"
+						"customer",
+						"save"
 					]
 				}
 			},
@@ -86,7 +87,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"simcardId\" : [1,2]\n}",
+					"raw": "{\n\t\"simcardId\" : [1,34]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -94,7 +95,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:7080/haud/telecom/customer/1",
+					"raw": "localhost:7080/haud/telecom/customer/save/1",
 					"host": [
 						"localhost"
 					],
@@ -103,6 +104,7 @@
 						"haud",
 						"telecom",
 						"customer",
+						"save",
 						"1"
 					]
 				}

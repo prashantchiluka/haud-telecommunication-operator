@@ -12,13 +12,17 @@
 **Project Url**
 
  - base url: localhost:7080/haud/telecom
- - customer create url(method:post): localhost:7080/haud/telecom/customer
+ 
+ - customer create url(method:post): localhost:7080/haud/telecom/customer/save
  Body: {
 	     "email" : "abc@g.c",
 	     "name" : "test"
        }
- - customer get url (method:get):localhost:7080/haud/telecom/customer/1
- - sim card url: localhost:7080/haud/telecom/simcard
+ 
+ - customer get url (method:get):localhost:7080/haud/telecom/customer/save/1
+ 
+ - sim card url: localhost:7080/haud/telecom/simcard/create
+ 
  - Link simcard to specific customer(method:put): localhost:7080/haud/telecom/customer/1
  
 **Database**

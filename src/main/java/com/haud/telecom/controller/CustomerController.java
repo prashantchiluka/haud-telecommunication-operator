@@ -34,29 +34,29 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@PostMapping
-	public ResponseEntity<CustomerResponseDto> createCustomer(@RequestHeader(Headers.AUTH_USER_NAME) String userName,
+	@PostMapping("/save")
+	public ResponseEntity<CustomerResponseDto> saveCustomer(@RequestHeader(Headers.USER_NAME) String userName,
 			@RequestBody CustomerRequestDto request) {
 
-		log.info("Creating customer " + request);
+		log.info("Saving customer " + request);
 
 		Request.verifyCustomerPost(request);
 		Customer customer = CustomerMapper.toCustomer(request);
 
 		customerService.addCustomer(customer, userName);
 
-		log.info("Customer created in database with id " + customer.getId());
+		log.info("Customer saved in database with id " + customer.getId());
 
 		return new ResponseEntity<>(CustomerMapper.toCustomerResponse(customer), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{customerid}")
-	public ResponseEntity<Void> linkSimCardToCustomer(@RequestHeader(Headers.AUTH_USER_NAME) String userName,
+	@PutMapping("/save/{customerid}")
+	public ResponseEntity<Void> bindSimCardToCustomer(@RequestHeader(Headers.USER_NAME) String userName,
 			@PathVariable("customerid") long customerId, @RequestBody UpdateCustomerRequestDto request) {
 
 		List<Long> simCardId = request.getSimcardId();
 
-		log.info("Linking sim card to customer , sim card id: " + simCardId + "customer id: " + customerId);
+		log.info("Binding sim card to customer , sim card id: " + simCardId + "customer id: " + customerId);
 
 		Request.verifyCustomerPut(customerId, simCardId, customerService);
 		customerService.updateCustomer(customerId, simCardId, userName);
@@ -67,9 +67,9 @@ public class CustomerController {
 	}
 
 	@GetMapping("/{customerid}")
-	public ResponseEntity<CustomerSimResponseDto> getCustomerSim(@PathVariable("customerid") long customerId) {
+	public ResponseEntity<CustomerSimResponseDto> getSpecificCustomerSim(@PathVariable("customerid") long customerId) {
 
-		log.info("Getting customer's sim with customer id :" + customerId);
+		log.info("Getting Specific customer's sim with customer id :" + customerId);
 
 		Request.verifyCustomerGet(customerId, customerService);
 		Customer customer = customerService.getCustomer(customerId);

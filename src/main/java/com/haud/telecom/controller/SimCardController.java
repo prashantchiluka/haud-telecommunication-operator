@@ -27,17 +27,17 @@ public class SimCardController {
 	@Autowired
 	private SimCardService simCardService;
 
-	@PostMapping
-	public ResponseEntity<SimResponseDto> createSimCard(@RequestHeader(Headers.AUTH_USER_NAME) String userName,
+	@PostMapping("/create")
+	public ResponseEntity<SimResponseDto> createSimCard(@RequestHeader(Headers.USER_NAME) String userName,
 			@RequestBody SimRequestDto request) {
 
-		log.info("Creating sim card " + request);
+		log.info("Saving sim card " + request);
 
 		Request.verifySimCardPost(request);
 		SimCard simCard = SimMapper.toSimCard(request);
 		simCardService.createSimCard(simCard, userName);
 
-		log.info("sim card created with id " + simCard.getId());
+		log.info("sim card saved with id " + simCard.getId());
 		return new ResponseEntity<>(SimMapper.toSimCardResponse(simCard), HttpStatus.CREATED);
 	}
 }

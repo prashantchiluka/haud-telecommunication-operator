@@ -71,24 +71,24 @@ public class SimCardControllerTest {
 
 		Mockito.when(simCardService.createSimCard(Mockito.any(), Mockito.anyString())).thenReturn(1l);
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/simcard").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("createSimcardValidJson")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.post("/simcard/create").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("createSimcardValidJson")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isCreated());
 	}
 
 	@Test
 	public void createSimcardGiveBadRequestWhenImsiIsNotPositive() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/simcard").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("createSimcardWithNonPositiveImsi")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.post("/simcard/create").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("createSimcardWithNonPositiveImsi")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest()).andExpect(jsonPath("$.errors.[0].detail").value("invalid imsi"));
 	}
 
 	@Test
 	public void createSimcardGiveBadRequestWhenMsisdnIsNotPositive() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/simcard").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("createSimcardWithNonPositiveMsisdn")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.post("/simcard/create").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("createSimcardWithNonPositiveMsisdn")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest()).andExpect(jsonPath("$.errors.[0].detail").value("invalid msisdn"));
 	}
 }

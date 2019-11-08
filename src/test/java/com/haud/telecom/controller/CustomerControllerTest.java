@@ -115,8 +115,8 @@ public class CustomerControllerTest {
     @Test
     public void saveCustomerGiveBadRequestWhenCustomerNameIsNull() throws Exception {
     	
-    	mockMvc.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON)
-                .content(json.getString("saveCustomerWithNullName")).header(Headers.AUTH_USER_NAME, "matthew123"))
+    	mockMvc.perform(MockMvcRequestBuilders.post("/customer/save").contentType(MediaType.APPLICATION_JSON)
+                .content(json.getString("saveCustomerWithNullName")).header(Headers.USER_NAME, "matthew123"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.[0].detail").value("customer name cannot be null or empty"));
     }
@@ -124,8 +124,8 @@ public class CustomerControllerTest {
     @Test
     public void saveCustomerGiveBadRequestWhenCustomerNameIsEmpty() throws Exception {
     	
-    	mockMvc.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON)
-                .content(json.getString("saveCustomerWithEmptyName")).header(Headers.AUTH_USER_NAME, "matthew123"))
+    	mockMvc.perform(MockMvcRequestBuilders.post("/customer/save").contentType(MediaType.APPLICATION_JSON)
+                .content(json.getString("saveCustomerWithEmptyName")).header(Headers.USER_NAME, "matthew123"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.[0].detail").value("customer name cannot be null or empty"));
     }
@@ -133,8 +133,8 @@ public class CustomerControllerTest {
     @Test
     public void saveCustomerGiveBadRequestWhenCustomerEmailIsNull() throws Exception {
     	
-    	mockMvc.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON)
-                .content(json.getString("saveCustomerWithNullEmail")).header(Headers.AUTH_USER_NAME, "matthew123"))
+    	mockMvc.perform(MockMvcRequestBuilders.post("/customer/save").contentType(MediaType.APPLICATION_JSON)
+                .content(json.getString("saveCustomerWithNullEmail")).header(Headers.USER_NAME, "matthew123"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.[0].detail").value("customer email cannot be null or empty"));
     }
@@ -142,8 +142,8 @@ public class CustomerControllerTest {
     @Test
     public void saveCustomerGiveBadRequestWhenCustomerEmailIsEmpty() throws Exception {
     	
-    	mockMvc.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON)
-                .content(json.getString("saveCustomerWithEmptyEmail")).header(Headers.AUTH_USER_NAME, "matthew123"))
+    	mockMvc.perform(MockMvcRequestBuilders.post("/customer/save").contentType(MediaType.APPLICATION_JSON)
+                .content(json.getString("saveCustomerWithEmptyEmail")).header(Headers.USER_NAME, "matthew123"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.[0].detail").value("customer email cannot be null or empty"));
     }
@@ -151,8 +151,8 @@ public class CustomerControllerTest {
     @Test
     public void saveCustomerGiveBadRequestWhenCustomerEmailIsInvalid() throws Exception {
     	
-    	mockMvc.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON)
-                .content(json.getString("saveCustomerWithInvalidEmail")).header(Headers.AUTH_USER_NAME, "matthew123"))
+    	mockMvc.perform(MockMvcRequestBuilders.post("/customer/save").contentType(MediaType.APPLICATION_JSON)
+                .content(json.getString("saveCustomerWithInvalidEmail")).header(Headers.USER_NAME, "matthew123"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.[0].detail").value("invalid email pattern"));
     }
@@ -162,16 +162,16 @@ public class CustomerControllerTest {
     	
         Mockito.when(customerService.addCustomer(Mockito.any(),Mockito.anyString())).thenReturn(1l);
 
-    	mockMvc.perform(MockMvcRequestBuilders.post("/customer").contentType(MediaType.APPLICATION_JSON)
-                .content(json.getString("saveCustomerValidJson")).header(Headers.AUTH_USER_NAME, "matthew123"))
+    	mockMvc.perform(MockMvcRequestBuilders.post("/customer/save").contentType(MediaType.APPLICATION_JSON)
+                .content(json.getString("saveCustomerValidJson")).header(Headers.USER_NAME, "matthew123"))
                 .andExpect(status().isCreated());
     }
     
     @Test
 	public void linkSimCardToCustomerGiveBadRequestWhenSimListIsEmpty() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/1").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerEmptyList")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/1").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerEmptyList")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("sim card id expected"));
 	}
@@ -179,8 +179,8 @@ public class CustomerControllerTest {
     @Test
 	public void linkSimCardToCustomerGiveBadRequestWhenNullSimIdFound() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/1").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerNullElementInList")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/1").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerNullElementInList")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("invalid List of Id"));
 	}
@@ -188,8 +188,8 @@ public class CustomerControllerTest {
     @Test
 	public void linkSimCardToCustomerGiveBadRequestWhenNegativeSimIdFound() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/1").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerNegativeIdtInList")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/1").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerNegativeIdtInList")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("invalid List of Id"));
 	}
@@ -197,8 +197,8 @@ public class CustomerControllerTest {
     @Test
 	public void linkSimCardToCustomerGiveBadRequestWhenZeroSimIdFound() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/1").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerZeroIdInList")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/1").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerZeroIdInList")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("invalid List of Id"));
 	}
@@ -206,8 +206,8 @@ public class CustomerControllerTest {
     @Test
 	public void linkSimCardToCustomerGiveBadRequestWhenZeroCustomerIdPassed() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/0").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/0").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("id must be greater than zero"));
 	}
@@ -215,8 +215,8 @@ public class CustomerControllerTest {
     @Test
 	public void linkSimCardToCustomerGiveBadRequestWhenNegativeCustomerIdPassed() throws Exception {
 
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/-1").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/-1").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("id must be greater than zero"));
 	}
@@ -226,8 +226,8 @@ public class CustomerControllerTest {
 
         Mockito.when(customerService.isCustomerExist(Mockito.anyLong())).thenReturn(false);
 		
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/100").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/100").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.errors.[0].detail").value("customer not exist"));
 	}
@@ -237,8 +237,8 @@ public class CustomerControllerTest {
 
         Mockito.when(customerService.isCustomerExist(Mockito.anyLong())).thenReturn(true);
 		
-		mockMvc.perform(MockMvcRequestBuilders.put("/customer/100").contentType(MediaType.APPLICATION_JSON)
-				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.AUTH_USER_NAME, "matthew123"))
+		mockMvc.perform(MockMvcRequestBuilders.put("/customer/save/100").contentType(MediaType.APPLICATION_JSON)
+				.content(json.getString("linkSimCardToCustomerValidJson")).header(Headers.USER_NAME, "matthew123"))
 				.andExpect(status().isNoContent());
 	}
 	
