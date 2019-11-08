@@ -19,7 +19,7 @@
 	     "name" : "test"
        }
  
- - customer get url (method:get):localhost:7080/haud/telecom/customer/save/1
+ - customer get url (method:get):localhost:7080/haud/telecom/customer/1
  
  - sim card url: localhost:7080/haud/telecom/simcard/create
  
